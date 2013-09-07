@@ -9,7 +9,7 @@ import java.sql.SQLException;
  * Time: 11:29
  * To change this template use File | Settings | File Templates.
  */
-public class H2DatabaseConnectionUtil {
+public class H2DatabaseUtil {
 
     private static final String DRIVER_NAME = "org.h2.Driver";
     private static Connection dbConnection;

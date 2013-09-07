@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,7 +12,16 @@ public class Controller {
 
     public static void main (String[] args){
 
-        Connection connection = H2DatabaseConnectionUtil.getDbConnection();
-        //connection
+        Connection dbConnection = H2DatabaseUtil.getDbConnection();
+        ToDoSamplesInit samplesInit = new ToDoSamplesInit(dbConnection);
+        samplesInit.createTables();
+        samplesInit.insertToDoItems();
+        ItemDAOImpl dao = new ItemDAOImpl(dbConnection);
+        List<ToDoItem> itemList = dao.getItems("WORK");
+        for (ToDoItem item : itemList) {
+            System.out.println(item.itemToString());
+        }
+
+
     }
 }
