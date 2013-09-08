@@ -46,7 +46,7 @@ public class ItemDAOImpl implements ItemDAO {
             while (requestResults.next()){
                 int id = requestResults.getInt("ID");
                 Date date = requestResults.getTimestamp("entryDate");
-                Date expDate = requestResults.getDate("expDate");
+                Date expDate = requestResults.getTimestamp("expDate");
                 String description = requestResults.getString("description");
                 ToDoItem toDoItem = new ToDoItem(id, date, expDate, description);
                 itemList.add(toDoItem);

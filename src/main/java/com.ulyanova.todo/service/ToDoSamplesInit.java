@@ -35,12 +35,12 @@ public class ToDoSamplesInit {
         String sqlItemAdd;
         sqlItemAdd = "INSERT INTO WORK (entryDate, expDate, description) VALUES (?,?,?)";
         java.util.Date date = new java.util.Date();
-        java.sql.Date dateSQL = new java.sql.Date(date.getTime());
+        java.util.Date date2 = new java.util.Date();
+        Timestamp dateSQL = new Timestamp(date.getTime());
         try {
             PreparedStatement preparedStatement = dbConnection.prepareStatement(sqlItemAdd);
-
-            preparedStatement.setDate(1, dateSQL);
-            preparedStatement.setDate(2, dateSQL);
+            preparedStatement.setTimestamp(1, dateSQL);
+            preparedStatement.setTimestamp(2, dateSQL);
             preparedStatement.setString(3, "Do the Math!");
             preparedStatement.execute();
         } catch (SQLException e) {

@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -54,8 +55,15 @@ public class ToDoItem {
 
     public String itemToString (){
         StringBuilder sb = new StringBuilder();
-        sb.append(getId()).append(" ").append(getEntryDate()).append(" ").append(getExpDate())
-                .append(" ").append(getDescription());
+        SimpleDateFormat ft =
+                new SimpleDateFormat("dd.MM.yyyy hh:mm");
+
+        sb.append(getId()).append(" ")
+                .append(ft.format(getEntryDate())).append(" ")
+                .append(ft.format(getExpDate())).append(" ")
+                .append(getDescription());
         return  sb.toString();
+
+
     }
 }
