@@ -1,4 +1,6 @@
 import java.sql.Connection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
@@ -21,7 +23,14 @@ public class Controller {
         for (ToDoItem item : itemList) {
             System.out.println(item.itemToString());
         }
+        SimpleDateFormat ft =
+                new SimpleDateFormat("dd.MM.yyyy HH:mm");
 
+        try {
+            System.out.println(ft.format(StringToDate.getDate("12.09.2013 21:13")));
+        } catch (ParseException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
 
     }
 }

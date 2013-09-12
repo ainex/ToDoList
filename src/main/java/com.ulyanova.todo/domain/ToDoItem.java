@@ -56,7 +56,7 @@ public class ToDoItem {
     public String itemToString (){
         StringBuilder sb = new StringBuilder();
         SimpleDateFormat ft =
-                new SimpleDateFormat("dd.MM.yyyy hh:mm");
+                new SimpleDateFormat("dd.MM.yyyy HH:mm");
 
         sb.append(getId()).append(" ")
                 .append(ft.format(getEntryDate())).append(" ")
