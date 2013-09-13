@@ -1,6 +1,6 @@
+package com.ulyanova.todo.service;
+
 import java.sql.*;
-import java.sql.Date;
-import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.

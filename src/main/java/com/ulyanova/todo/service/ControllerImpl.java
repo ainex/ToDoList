@@ -1,3 +1,8 @@
+package com.ulyanova.todo.service;
+
+import com.ulyanova.todo.dao.ItemDAOImpl;
+import com.ulyanova.todo.domain.ToDoItem;
+
 import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -6,11 +11,11 @@ import java.util.List;
 /**
  * Created with IntelliJ IDEA.
  * User: ainex
- * Date: 07.09.13
- * Time: 11:28
+ * Date: 13.09.13
+ * Time: 21:55
  * To change this template use File | Settings | File Templates.
  */
-public class Controller {
+public class ControllerImpl {
 
     public static void main (String[] args){
 

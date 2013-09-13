@@ -1,3 +1,7 @@
+package com.ulyanova.todo.dao;
+
+import com.ulyanova.todo.domain.ToDoItem;
+
 import java.util.Date;
 import java.util.List;
 
