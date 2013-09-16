@@ -1,6 +1,9 @@
 package com.ulyanova.todo.service;
 
+import com.ulyanova.todo.dao.ItemDAOImpl;
+
 import java.sql.*;
+import java.text.ParseException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -10,41 +13,29 @@ import java.sql.*;
  * To change this template use File | Settings | File Templates.
  */
 public class ToDoSamplesInit {
-    private Connection dbConnection;
+    private ItemDAOImpl  itemDAO;
     private Statement statement;
-    PreparedStatement preparedStatement;
-    ResultSet requestResults;
 
-    public ToDoSamplesInit(Connection dbConnection) {
-        this.dbConnection = dbConnection;
+    public ToDoSamplesInit() {
+        this.itemDAO = new ItemDAOImpl();
     }
 
-    public void createTables(){
-        //Work  Education Miscellaneous
+    public void createTables(String table1, String table2, String table3){
+        itemDAO.createTables(table1, table2, table3);
 
-        try {
-            statement = dbConnection.createStatement();
-            statement.execute("CREATE TABLE WORK" +
-                    "(ID INT PRIMARY KEY AUTO_INCREMENT, entryDate DATETIME, expDate DATETIME, description VARCHAR(128))");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public void insertToDoItems() {
-        String sqlItemAdd;
-        sqlItemAdd = "INSERT INTO WORK (entryDate, expDate, description) VALUES (?,?,?)";
-        java.util.Date date = new java.util.Date();
-        java.util.Date date2 = new java.util.Date();
-        Timestamp dateSQL = new Timestamp(date.getTime());
+
+        String description = "Study JSON objects";
+        java.util.Date expirationDate = null;
         try {
-            PreparedStatement preparedStatement = dbConnection.prepareStatement(sqlItemAdd);
-            preparedStatement.setTimestamp(1, dateSQL);
-            preparedStatement.setTimestamp(2, dateSQL);
-            preparedStatement.setString(3, "Do the Math!");
-            preparedStatement.execute();
-        } catch (SQLException e) {
+            expirationDate = StringToDate.getDate("16.09.2013 20:05");
+        } catch (ParseException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
+        itemDAO.addToDoItem(expirationDate, description, "EDUCATION");
+        itemDAO.addToDoItem(expirationDate, "write json code", "EDUCATION");
+        itemDAO.addToDoItem(expirationDate, "get Java job", "WORK");
     }
 }

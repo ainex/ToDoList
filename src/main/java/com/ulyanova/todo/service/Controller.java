@@ -1,4 +1,4 @@
-package com.ulyanova.todo.dao;
+package com.ulyanova.todo.service;
 
 import com.ulyanova.todo.domain.ToDoItem;
 
@@ -9,16 +9,14 @@ import java.util.List;
 /**
  * Created with IntelliJ IDEA.
  * User: ainex
- * Date: 07.09.13
- * Time: 19:49
+ * Date: 15.09.13
+ * Time: 19:59
  * To change this template use File | Settings | File Templates.
  */
-public interface ItemDAO {
-
+public interface Controller {
 
     public void addToDoItem(Date expirationDate, String taskDescription, String table) throws SQLException;
     public void removeToDoItem(int id);
     public void updateToDoItem(int id, Date expirationDate, String taskDescription, String table);
     public List<ToDoItem> getItems(String folderName);
-    public void createTables(String table1, String table2, String table3);
 }

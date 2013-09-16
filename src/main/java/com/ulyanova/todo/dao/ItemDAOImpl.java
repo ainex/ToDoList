@@ -3,11 +3,9 @@ package com.ulyanova.todo.dao;
 
 
 import com.ulyanova.todo.domain.ToDoItem;
+import com.ulyanova.todo.service.H2DatabaseUtil;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,23 +21,66 @@ public class ItemDAOImpl implements ItemDAO {
 
     Connection dbConnection;
 
-    public ItemDAOImpl(Connection dbConnection) {
-        this.dbConnection = dbConnection;
+    public ItemDAOImpl() {
+        this.dbConnection  = H2DatabaseUtil.getDbConnection();
     }
 
     @Override
-    public void addToDoItem(Date expirationDate, String taskDescription) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void addToDoItem(Date expirationDate, String taskDescription, String table) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("INSERT INTO ").append(table).append(" (entryDate, expDate, description) VALUES (?,?,?)");
+        String sqlItemAdd = sb.toString();
+        java.util.Date date = new java.util.Date();
+
+        Timestamp entryDateSQL = new Timestamp(date.getTime());
+        Timestamp expirationDateSQL = new Timestamp(expirationDate.getTime());
+
+        try(PreparedStatement preparedStatement = dbConnection.prepareStatement(sqlItemAdd)) {
+            preparedStatement.setTimestamp(1, entryDateSQL);
+            preparedStatement.setTimestamp(2, expirationDateSQL);
+            preparedStatement.setString(3, taskDescription);
+            preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public void removeToDoItem() {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void removeToDoItem(int id) {
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("DELETE FROM EDUCATION WHERE ID=").append(id);
+        try {
+            Statement st = dbConnection.createStatement();
+            st.execute(sb.toString());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(id +"-number is deleted");
+
     }
 
     @Override
-    public void editToDoItem() {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void updateToDoItem(int id, java.util.Date expirationDate, String taskDescription, String table) {
+        //Table columns: (ID INT PRIMARY KEY AUTO_INCREMENT, entryDate DATETIME, expDate DATETIME, description VARCHAR(128))
+        StringBuilder sb = new StringBuilder();
+        sb.append("UPDATE ").append(table).append(" SET expDate=?, description=? WHERE ID=?");
+        String sqlItemAdd = sb.toString();
+        Timestamp expirationDateSQL = new Timestamp(expirationDate.getTime());
+
+        try(PreparedStatement preparedStatement = dbConnection.prepareStatement(sqlItemAdd)) {
+            preparedStatement.setTimestamp(1, expirationDateSQL);
+            preparedStatement.setString(2, taskDescription);
+            preparedStatement.setInt(3, id);
+            preparedStatement.execute();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        sb.setLength(0);
+
     }
 
     @Override
@@ -62,5 +103,21 @@ public class ItemDAOImpl implements ItemDAO {
         }
 
         return itemList;
+    }
+
+    @Override
+    public void createTables(String table1, String table2, String table3) {
+        Statement statement;
+        try {
+            statement = dbConnection.createStatement();
+            statement.execute("CREATE TABLE "+table1+ " " +
+                    "(ID INT PRIMARY KEY AUTO_INCREMENT, entryDate DATETIME, expDate DATETIME, description VARCHAR(128))");
+            statement.execute("CREATE TABLE EDUCATION" +
+                    "(ID INT PRIMARY KEY AUTO_INCREMENT, entryDate DATETIME, expDate DATETIME, description VARCHAR(128))");
+            statement.execute("CREATE TABLE MISCELLANEOUS" +
+                    "(ID INT PRIMARY KEY AUTO_INCREMENT, entryDate DATETIME, expDate DATETIME, description VARCHAR(128))");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

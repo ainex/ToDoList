@@ -4,8 +4,11 @@ import com.ulyanova.todo.dao.ItemDAOImpl;
 import com.ulyanova.todo.domain.ToDoItem;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,27 +18,34 @@ import java.util.List;
  * Time: 21:55
  * To change this template use File | Settings | File Templates.
  */
-public class ControllerImpl {
+public class ControllerImpl implements Controller {
 
-    public static void main (String[] args){
+    private ItemDAOImpl itemDAO = new ItemDAOImpl();
 
-        Connection dbConnection = H2DatabaseUtil.getDbConnection();
-        ToDoSamplesInit samplesInit = new ToDoSamplesInit(dbConnection);
-        samplesInit.createTables();
-        samplesInit.insertToDoItems();
-        ItemDAOImpl dao = new ItemDAOImpl(dbConnection);
-        List<ToDoItem> itemList = dao.getItems("WORK");
-        for (ToDoItem item : itemList) {
-            System.out.println(item.itemToString());
-        }
-        SimpleDateFormat ft =
-                new SimpleDateFormat("dd.MM.yyyy HH:mm");
+    @Override
+    public void addToDoItem(Date expirationDate, String taskDescription, String table) throws SQLException {
 
-        try {
-            System.out.println(ft.format(StringToDate.getDate("12.09.2013 21:13")));
-        } catch (ParseException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+        itemDAO.addToDoItem(expirationDate, taskDescription, table);
+    }
 
+    @Override
+    public void removeToDoItem(int id) {
+
+        itemDAO.removeToDoItem(id);
+    }
+
+    @Override
+    public void updateToDoItem(int id, Date expirationDate, String taskDescription, String table) {
+
+        itemDAO.updateToDoItem(id, expirationDate, taskDescription, table);
+    }
+
+    @Override
+    public List<ToDoItem> getItems(String folderName) {
+
+        return itemDAO.getItems(folderName);
     }
 }
+
+
+

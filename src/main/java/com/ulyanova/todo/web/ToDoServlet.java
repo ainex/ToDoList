@@ -20,6 +20,10 @@ public class ToDoServlet extends HttpServlet {
         super();
     }
 
+    protected String getActionName(HttpServletRequest request) {
+        String path = request.getServletPath();
+        return path.substring(path.lastIndexOf(".")+1, path.length());
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -28,7 +32,8 @@ public class ToDoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
-        String id = req.getParameter("id");
+
+        String actionName = getActionName(req);
         PrintWriter writer = resp.getWriter();
         writer.println("Hello, World!");
         writer.close();
