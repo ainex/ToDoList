@@ -36,18 +36,7 @@ public class DaoTestDrive {
         controller.updateToDoItem(2, newExpDate, "new description", "EDUCATION");
 
         itemList = controller.getItems("EDUCATION");
-        for (ToDoItem item : itemList) {
-            System.out.println(item.itemToString());
-            try {
-                ItemToMapUtil.getMap(item);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-
-
-
-
+        System.out.println(controller.getJSONArray(itemList));
 
     }
 }

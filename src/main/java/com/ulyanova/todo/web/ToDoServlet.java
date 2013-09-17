@@ -1,5 +1,8 @@
 package com.ulyanova.todo.web;
 
+import com.ulyanova.todo.service.ToDoSamplesInit;
+import org.json.simple.JSONObject;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +18,16 @@ import java.io.PrintWriter;
  * To change this template use File | Settings | File Templates.
  */
 public class ToDoServlet extends HttpServlet {
-
+    protected ActionFactory factory = new ActionFactory();
     public ToDoServlet (){
         super();
+    }
+
+    @Override
+    public void init() throws ServletException {
+        ToDoSamplesInit samplesInit = new ToDoSamplesInit();
+        samplesInit.createTables("WORK","EDUCATION", "MISCELLANEOUS");
+        samplesInit.insertToDoItems();
     }
 
     protected String getActionName(HttpServletRequest request) {
@@ -33,10 +43,16 @@ public class ToDoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
 
-        String actionName = getActionName(req);
-        PrintWriter writer = resp.getWriter();
-        writer.println("Hello, World!");
-        writer.close();
+
+        Action action = factory.create(getActionName(req));
+
+        action.perform(req, resp);
+        /*PrintWriter writer = resp.getWriter();
+        JSONObject resultJson = new JSONObject();
+
+        resultJson.put("name",actionName);
+        writer.println(resultJson.toString());
+        writer.close();*/
 
     }
 }

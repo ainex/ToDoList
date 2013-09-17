@@ -1,6 +1,8 @@
 package com.ulyanova.todo.service;
 
 import com.ulyanova.todo.domain.ToDoItem;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.sql.SQLException;
 import java.util.Date;
@@ -19,4 +21,5 @@ public interface Controller {
     public void removeToDoItem(int id);
     public void updateToDoItem(int id, Date expirationDate, String taskDescription, String table);
     public List<ToDoItem> getItems(String folderName);
+    public JSONObject getJSONArray (List<ToDoItem> itemList);
 }

@@ -30,12 +30,12 @@ public class ToDoSamplesInit {
         String description = "Study JSON objects";
         java.util.Date expirationDate = null;
         try {
-            expirationDate = StringToDate.getDate("16.09.2013 20:05");
+            expirationDate = StringToDate.getDate("20.09.2013 20:05");
         } catch (ParseException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
         itemDAO.addToDoItem(expirationDate, description, "EDUCATION");
-        itemDAO.addToDoItem(expirationDate, "write json code", "EDUCATION");
-        itemDAO.addToDoItem(expirationDate, "get Java job", "WORK");
+        itemDAO.addToDoItem(expirationDate, "write JSON ajax request", "EDUCATION");
+        itemDAO.addToDoItem(expirationDate, "Metting: new project", "WORK");
     }
 }

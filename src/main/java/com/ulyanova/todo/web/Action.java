@@ -1,7 +1,10 @@
 package com.ulyanova.todo.web;
 
+import org.json.simple.JSONObject;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 /**
@@ -12,5 +15,5 @@ import java.io.UnsupportedEncodingException;
  * To change this template use File | Settings | File Templates.
  */
 public interface Action {
-    public String perform(HttpServletRequest request, HttpServletResponse response);
+    public void perform(HttpServletRequest request, HttpServletResponse response) throws IOException;
 }

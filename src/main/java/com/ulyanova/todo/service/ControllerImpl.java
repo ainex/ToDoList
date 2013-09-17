@@ -2,6 +2,8 @@ package com.ulyanova.todo.service;
 
 import com.ulyanova.todo.dao.ItemDAOImpl;
 import com.ulyanova.todo.domain.ToDoItem;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -10,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with IntelliJ IDEA.
@@ -44,6 +47,26 @@ public class ControllerImpl implements Controller {
     public List<ToDoItem> getItems(String folderName) {
 
         return itemDAO.getItems(folderName);
+    }
+
+    @Override
+    public JSONObject getJSONArray(List<ToDoItem> itemList) {
+        JSONArray toDoItemsJSONArray = new JSONArray();
+        JSONObject resultJson = new JSONObject();
+        Map<String, String> itemMap=null;
+        for (ToDoItem item: itemList) {
+
+            try {
+                itemMap = ItemToMapUtil.getMap(item);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+
+            toDoItemsJSONArray.add(itemMap);
+        }
+
+        resultJson.put("toDoItemsJSONObj",toDoItemsJSONArray);
+        return resultJson;
     }
 }
 

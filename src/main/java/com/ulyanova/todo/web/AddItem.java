@@ -5,7 +5,6 @@ import org.json.simple.JSONObject;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.UnsupportedEncodingException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -16,7 +15,7 @@ import java.io.UnsupportedEncodingException;
  */
 public class AddItem implements Action  {
     @Override
-    public String perform(HttpServletRequest request, HttpServletResponse response) {
+    public void perform(HttpServletRequest request, HttpServletResponse response) {
         ControllerImpl controller = new ControllerImpl();
         /*   JSONObject is a java.util.Map and JSONArray is a java.util.List*/
       //  JSONObject jObj = new JSONObject(request.getParameter("mydata")); // this parses the json
@@ -29,7 +28,7 @@ public class AddItem implements Action  {
             session.putValue(key, o); // store in session
         }
         //controller.addToDoItem("");    */
-        return null;
+
 }
 
 }

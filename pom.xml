@@ -32,9 +32,45 @@
           <artifactId>json-simple</artifactId>
           <version>1.1.1</version>
       </dependency>
+      <dependency>
+          <groupId>log4j</groupId>
+          <artifactId>log4j</artifactId>
+          <version>1.2.17</version>
+      </dependency>
+
   </dependencies>
 
   <build>
-    <finalName>ToDoList</finalName>
+       <finalName>ToDoList</finalName>
+
+      <plugins>
+
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-war-plugin</artifactId>
+              <configuration>
+                  <webResources>
+                      <resource>
+                          <directory>${basedir}/src/main/resources</directory>
+                          <targetPath>.</targetPath>
+                          <includes>
+                              <include>**/*.js</include>
+                              <include>**/*.css</include>
+
+                          </includes>
+                      </resource>
+                  </webResources>
+              </configuration>
+          </plugin>
+
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <configuration>
+                  <source>1.7</source>
+                  <target>1.7</target>
+              </configuration>
+          </plugin>
+      </plugins>
   </build>
 </project>
