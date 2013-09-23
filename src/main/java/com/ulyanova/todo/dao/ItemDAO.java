@@ -17,8 +17,8 @@ public interface ItemDAO {
 
 
     public void addToDoItem(Date expirationDate, String taskDescription, String table) throws SQLException;
-    public void removeToDoItem(int id);
+    public void removeToDoItem(int id, String table);
     public void updateToDoItem(int id, Date expirationDate, String taskDescription, String table);
     public List<ToDoItem> getItems(String folderName);
-    public void createTables(String table1, String table2, String table3);
+    public void createTable(String tableName);
 }

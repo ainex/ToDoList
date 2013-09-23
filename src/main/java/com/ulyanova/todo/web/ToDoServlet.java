@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 /**
  * Created with IntelliJ IDEA.
@@ -27,7 +28,11 @@ public class ToDoServlet extends HttpServlet {
     public void init() throws ServletException {
         ToDoSamplesInit samplesInit = new ToDoSamplesInit();
         samplesInit.createTables("WORK","EDUCATION", "MISCELLANEOUS");
-        samplesInit.insertToDoItems();
+        try {
+            samplesInit.insertToDoItems();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     protected String getActionName(HttpServletRequest request) {
@@ -43,10 +48,13 @@ public class ToDoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=UTF-8");
 
-
         Action action = factory.create(getActionName(req));
 
-        action.perform(req, resp);
+        try {
+            action.perform(req, resp);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         /*PrintWriter writer = resp.getWriter();
         JSONObject resultJson = new JSONObject();
 

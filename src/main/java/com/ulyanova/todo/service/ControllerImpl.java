@@ -32,9 +32,9 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public void removeToDoItem(int id) {
+    public void removeToDoItem(int id, String table) {
 
-        itemDAO.removeToDoItem(id);
+        itemDAO.removeToDoItem(id, table);
     }
 
     @Override
@@ -47,6 +47,11 @@ public class ControllerImpl implements Controller {
     public List<ToDoItem> getItems(String folderName) {
 
         return itemDAO.getItems(folderName);
+    }
+
+    @Override
+    public void createTable(String tableName) {
+        itemDAO.createTable(tableName);
     }
 
     @Override

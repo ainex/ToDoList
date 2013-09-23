@@ -46,10 +46,10 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public void removeToDoItem(int id) {
+    public void removeToDoItem(int id, String table) {
 
         StringBuilder sb = new StringBuilder();
-        sb.append("DELETE FROM EDUCATION WHERE ID=").append(id);
+        sb.append("DELETE FROM ").append(table).append(" WHERE ID=").append(id);
         try {
             Statement st = dbConnection.createStatement();
             st.execute(sb.toString());
@@ -84,11 +84,11 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public List<ToDoItem> getItems(String folderName) {
+    public List<ToDoItem> getItems(String tableName) {
         List<ToDoItem> itemList = new ArrayList<ToDoItem>();
         try {
             Statement st = dbConnection.createStatement();
-            ResultSet requestResults = st.executeQuery("SELECT * FROM "+folderName);
+            ResultSet requestResults = st.executeQuery("SELECT * FROM "+tableName);
 
             while (requestResults.next()){
                 int id = requestResults.getInt("ID");
@@ -106,16 +106,13 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public void createTables(String table1, String table2, String table3) {
+    public void createTable(String tableName) {
         Statement statement;
         try {
             statement = dbConnection.createStatement();
-            statement.execute("CREATE TABLE "+table1+ " " +
+            statement.execute("CREATE TABLE "+tableName+ " " +
                     "(ID INT PRIMARY KEY AUTO_INCREMENT, entryDate DATETIME, expDate DATETIME, description VARCHAR(128))");
-            statement.execute("CREATE TABLE EDUCATION" +
-                    "(ID INT PRIMARY KEY AUTO_INCREMENT, entryDate DATETIME, expDate DATETIME, description VARCHAR(128))");
-            statement.execute("CREATE TABLE MISCELLANEOUS" +
-                    "(ID INT PRIMARY KEY AUTO_INCREMENT, entryDate DATETIME, expDate DATETIME, description VARCHAR(128))");
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
