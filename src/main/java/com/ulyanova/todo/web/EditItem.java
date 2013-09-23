@@ -27,13 +27,15 @@ public class EditItem implements Action {
         String  task = request.getParameter("task-description");
         String dateAndTimeStr = request.getParameter("exp-date") + " "
                 +request.getParameter("exp-time");
+        int id = Integer.parseInt(request.getParameter("id"));
         java.util.Date date = null;
         try {
             date = StringToDate.getDate(dateAndTimeStr);
             folderName = "EDUCATION";
-            controller.addToDoItem(date, task, folderName);
+            controller.updateToDoItem(id, date, task, folderName);
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
     }
 }

@@ -24,17 +24,15 @@ public class AddItem implements Action  {
         String folderName = request.getParameter("folderName");
         String  task = request.getParameter("task-description");
         String dateAndTimeStr = request.getParameter("exp-date") + " "
-                            +request.getParameter("exp-time");
-        int id = Integer.parseInt(request.getParameter("id"));
+                +request.getParameter("exp-time");
         java.util.Date date = null;
         try {
             date = StringToDate.getDate(dateAndTimeStr);
             folderName = "EDUCATION";
-            controller.updateToDoItem(id, date, task, folderName);
+            controller.addToDoItem(date, task, folderName);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
     }
 
 }
