@@ -5,11 +5,7 @@ import com.ulyanova.todo.domain.ToDoItem;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.sql.Connection;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +51,13 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
-    public JSONObject getJSONArray(List<ToDoItem> itemList) {
+   /*
+    *   Parses java.util.List to
+    *   JSONObject {"toDoItemsJSONObj": JSONArray of JSONObjects}
+    *   JSONObject is a java.util.Map and JSONArray is a java.util.List
+    */
+
+    public JSONObject getJSONObject(List<ToDoItem> itemList) {
         JSONArray toDoItemsJSONArray = new JSONArray();
         JSONObject resultJson = new JSONObject();
         Map<String, String> itemMap=null;

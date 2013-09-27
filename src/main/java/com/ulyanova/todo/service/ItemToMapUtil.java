@@ -8,18 +8,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created with IntelliJ IDEA.
- * User: ainex
- * Date: 16.09.13
- * Time: 13:37
- * To change this template use File | Settings | File Templates.
+ *   Parses ToDoItem  to java.util.Map. Used by Controller method
+ *   public JSONObject getJSONObject(List<ToDoItem> itemList).
+ *   JSONObject as {"toDoItemsJSONObj": JSONArray of JSONObjects}
+ *   JSONObject is a java.util.Map and JSONArray is a java.util.List
+ *
  */
+
 public class ItemToMapUtil {
 
     public static Map <String, String> getMap (ToDoItem item) throws IllegalAccessException {
         SimpleDateFormat ft =
                 new SimpleDateFormat("dd.MM.yyyy HH:mm");
-        //System.out.println(ft.format(newExpDate));
+
         Map <String, String> itemToMap = new HashMap<>() ;
 
         Class c = item.getClass();

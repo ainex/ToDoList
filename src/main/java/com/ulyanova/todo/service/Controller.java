@@ -22,5 +22,5 @@ public interface Controller {
     public void updateToDoItem(int id, Date expirationDate, String taskDescription, String table);
     public void createTable(String tableName);
     public List<ToDoItem> getItems(String folderName);
-    public JSONObject getJSONArray (List<ToDoItem> itemList);
+    public JSONObject getJSONObject (List<ToDoItem> itemList);
 }

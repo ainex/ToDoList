@@ -25,7 +25,7 @@ public class RemoveItem implements Action {
         controller.removeToDoItem(id,folderName);
         response.setContentType("text");
         PrintWriter out = response.getWriter();
-        out.print("deleted! " + id + " " + folderName);
+        out.print("Task @ "+ folderName + " id = " + id + " was deleted" );
         out.flush();
     }
 }

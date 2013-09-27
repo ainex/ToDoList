@@ -54,10 +54,9 @@
                           <directory>${basedir}/src/main/resources</directory>
                           <targetPath>.</targetPath>
                           <includes>
-                              <include>**/*.js</include>
-                              <include>**/*.css</include>
-
+                              <include>**/*.*</include>
                           </includes>
+
                       </resource>
                   </webResources>
               </configuration>
