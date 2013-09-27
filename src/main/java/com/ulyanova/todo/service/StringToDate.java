@@ -4,13 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created with IntelliJ IDEA.
- * User: ainex
- * Date: 12.09.13
- * Time: 20:45
- * To change this template use File | Settings | File Templates.
- */
 public class StringToDate {
 
     public static Date getDate(String dateAndTimeStr) throws ParseException {

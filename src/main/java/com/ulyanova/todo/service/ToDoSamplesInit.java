@@ -4,13 +4,6 @@ package com.ulyanova.todo.service;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-/**
- * Created with IntelliJ IDEA.
- * User: ainex
- * Date: 07.09.13
- * Time: 19:48
- * To change this template use File | Settings | File Templates.
- */
 public class ToDoSamplesInit {
     private Controller  controller;
 

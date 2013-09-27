@@ -1,23 +1,14 @@
 package com.ulyanova.todo.web;
 
 import com.ulyanova.todo.service.ToDoSamplesInit;
-import org.json.simple.JSONObject;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
-/**
- * Created with IntelliJ IDEA.
- * User: ainex
- * Date: 12.09.13
- * Time: 21:35
- * To change this template use File | Settings | File Templates.
- */
+
 public class ToDoServlet extends HttpServlet {
     protected ActionFactory factory = new ActionFactory();
     public ToDoServlet (){
@@ -55,12 +46,7 @@ public class ToDoServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        /*PrintWriter writer = resp.getWriter();
-        JSONObject resultJson = new JSONObject();
 
-        resultJson.put("name",actionName);
-        writer.println(resultJson.toString());
-        writer.close();*/
 
     }
 }

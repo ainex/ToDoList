@@ -3,8 +3,6 @@ package com.ulyanova.todo.web;
 import com.ulyanova.todo.service.Controller;
 import com.ulyanova.todo.service.ControllerImpl;
 import com.ulyanova.todo.service.StringToDate;
-import org.json.simple.JSONObject;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -12,13 +10,6 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.text.ParseException;
 
-/**
- * Created with IntelliJ IDEA.
- * User: ainex
- * Date: 15.09.13
- * Time: 19:08
- * To change this template use File | Settings | File Templates.
- */
 public class AddItem implements Action  {
     @Override
     public void perform(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {

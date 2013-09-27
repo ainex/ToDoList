@@ -1,7 +1,5 @@
 package com.ulyanova.todo.dao;
 
-
-
 import com.ulyanova.todo.domain.ToDoItem;
 import com.ulyanova.todo.service.H2DatabaseUtil;
 
@@ -10,13 +8,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: ainex
- * Date: 06.09.13
- * Time: 21:58
- * To change this template use File | Settings | File Templates.
- */
 public class ItemDAOImpl implements ItemDAO {
 
     Connection dbConnection;

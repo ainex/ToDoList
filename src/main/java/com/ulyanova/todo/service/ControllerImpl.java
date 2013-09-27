@@ -10,13 +10,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created with IntelliJ IDEA.
- * User: ainex
- * Date: 13.09.13
- * Time: 21:55
- * To change this template use File | Settings | File Templates.
- */
 public class ControllerImpl implements Controller {
 
     private ItemDAOImpl itemDAO = new ItemDAOImpl();

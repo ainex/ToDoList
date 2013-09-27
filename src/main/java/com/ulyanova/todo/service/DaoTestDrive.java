@@ -10,13 +10,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: ainex
- * Date: 13.09.13
- * Time: 21:55
- * To change this template use File | Settings | File Templates.
- */
 public class DaoTestDrive {
 
     public static void main (String[] args) throws ParseException, SQLException {
@@ -37,7 +30,7 @@ public class DaoTestDrive {
         controller.updateToDoItem(2, newExpDate, "new description", "EDUCATION");
 
         itemList = controller.getItems("EDUCATION");
-        System.out.println(controller.getJSONArray(itemList));
+
 
     }
 }

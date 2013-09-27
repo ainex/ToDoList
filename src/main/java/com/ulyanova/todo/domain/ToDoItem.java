@@ -3,13 +3,6 @@ package com.ulyanova.todo.domain;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created with IntelliJ IDEA.
- * User: ainex
- * Date: 06.09.13
- * Time: 21:57
- * To change this template use File | Settings | File Templates.
- */
 public class ToDoItem {
     private int id;
     private Date entryDate;
